@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class AnotherFailingJpaTest {
+class PostProcessorFailingJpaTest {
 
 	@TestConfiguration
 	static class Config {

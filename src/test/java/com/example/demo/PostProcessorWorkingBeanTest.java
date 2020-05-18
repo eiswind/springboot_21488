@@ -13,7 +13,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
-class AnotherFailingBeanTest {
+class PostProcessorWorkingBeanTest {
 
 	@TestConfiguration
 	static class Config {
