@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.AdditionalAnswers;
 import org.mockito.Mockito;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +8,19 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.test.context.ActiveProfiles;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
-class AnotherFailingJpaTest {
+class AnotherFailingBeanTest {
 
 	@TestConfiguration
 	static class Config {
 
 		@Bean
 		public BeanPostProcessor messageRequestListenerPostProcessor() {
-			return new ProxiedMockPostProcessor(MyRepository.class);
+			return new ProxiedMockPostProcessor(MyInterface.class);
 		}
 
 		/**
@@ -53,11 +50,11 @@ class AnotherFailingJpaTest {
 	}
 
 	@Autowired
-	MyRepository repository;
+	MyInterface bean;
 
 	@Test
 	void verifyFails() {
-		verify(repository, times(0)).count();
+		verify(bean, times(0)).getValue();
 	}
 
 }
